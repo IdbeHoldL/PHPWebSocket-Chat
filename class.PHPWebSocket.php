@@ -525,6 +525,8 @@ class PHPWebSocket
 
 
 
+
+
 // fetch byte position where the mask key starts
     $seek = $this->wsClients[$clientID][7] <= 125 ? 2 : ($this->wsClients[$clientID][7] <= 65535 ? 4 : 10);
 
@@ -729,6 +731,8 @@ class PHPWebSocket
     // check Sec-WebSocket-Version header was received and value is 7
     if (!isset($headersKeyed['Sec-WebSocket-Version']) || (int) $headersKeyed['Sec-WebSocket-Version'] < 7)
       return false; // should really be != 7, but Firefox 7 beta users send 8
+
+
 
 
 
