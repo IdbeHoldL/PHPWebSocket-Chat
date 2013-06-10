@@ -15,29 +15,14 @@
 
 class PHPWebSocket
 {
-  // maximum amount of clients that can be connected at one time
 
-  const WS_MAX_CLIENTS = 100;
-
-  // maximum amount of clients that can be connected at one time on the same IP v4 address
-  const WS_MAX_CLIENTS_PER_IP = 15;
-
-  // amount of seconds a client has to send data to the server, before a ping request is sent to the client,
-  // if the client has not completed the opening handshake, the ping request is skipped and the client connection is closed
-  const WS_TIMEOUT_RECV = 10;
-
-  // amount of seconds a client has to reply to a ping request, before the client connection is closed
-  const WS_TIMEOUT_PONG = 5;
-
-  // the maximum length, in bytes, of a frame's payload data (a message consists of 1 or more frames), this is also internally limited to 2,147,479,538
-  const WS_MAX_FRAME_PAYLOAD_RECV = 100000;
-
-  // the maximum length, in bytes, of a message's payload data, this is also internally limited to 2,147,483,647
-  const WS_MAX_MESSAGE_PAYLOAD_RECV = 500000;
-
-
-
-
+  const WS_MAX_CLIENTS                     = 100;       // максимальное количество одновременно подсоединенных клиентов
+  const WS_MAX_CLIENTS_PER_IP              = 15;        // максимальное количество клиентов с одного IP
+  const WS_TIMEOUT_RECV                    = 10;        // время для ответа клиенту на запрос о рукопожатии.
+  const WS_TIMEOUT_PONG                    = 5;         // время за которое клиент должен ответить на ping
+  const WS_MAX_FRAME_PAYLOAD_RECV          = 100000;    // the maximum length, in bytes, of a frame's payload data (a message consists of 1 or more frames), this is also internally limited to 2,147,479,538
+  const WS_MAX_MESSAGE_PAYLOAD_RECV        = 500000;    // the maximum length, in bytes, of a message's payload data, this is also internally limited to 2,147,483,647
+  //
   // internal
   const WS_FIN                             = 128;
   const WS_MASK                            = 128;
@@ -527,6 +512,9 @@ class PHPWebSocket
 
 
 
+
+
+
 // fetch byte position where the mask key starts
     $seek = $this->wsClients[$clientID][7] <= 125 ? 2 : ($this->wsClients[$clientID][7] <= 65535 ? 4 : 10);
 
@@ -731,6 +719,9 @@ class PHPWebSocket
     // check Sec-WebSocket-Version header was received and value is 7
     if (!isset($headersKeyed['Sec-WebSocket-Version']) || (int) $headersKeyed['Sec-WebSocket-Version'] < 7)
       return false; // should really be != 7, but Firefox 7 beta users send 8
+
+
+
 
 
 
